@@ -23,7 +23,9 @@ names = pd.concat(pieces, ignore_index=True)
 names = names.groupby(['year', 'sex']).apply(add_prop)
 
 total_births = names.pivot_table('births', index='year', columns='name', aggfunc=sum)
-names_to_search = input('Enter names separated by spaces: ')
-subset = total_births[names_to_search.split(' ')]
-subset.plot(subplots=False, grid=True, figsize=(12, 10), title='Births per year')
-plt.show()
+while True:
+    names_to_search = input('Enter names separated by spaces: ')
+    subset = total_births[names_to_search.split(' ')]
+    subset.plot(subplots=False, grid=True, figsize=(12, 10), title='Births per year')
+    if names_to_search != "":
+        plt.show()
